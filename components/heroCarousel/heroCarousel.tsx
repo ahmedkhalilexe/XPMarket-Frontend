@@ -1,6 +1,5 @@
 "use client";
-import Image from "next/image";
-import React, { MouseEventHandler, use, useState } from "react";
+import React, { useState } from "react";
 import pic from "../../assets/pic.jpg";
 import pic2 from "../../assets/pic2.jpg";
 import pic3 from "../../assets/pic3.jpg";
@@ -71,14 +70,14 @@ export default function HeroCarousel({}: Props) {
           ))}
         </motion.div>
         <div
-          className="absolute top-0 bottom-0 left-0 flex items-center justify-center lg:w-24 h-full cursor-pointer bg-gradient-to-r from-[#0155B8]/30 via-[#0155B8]/20 to-transparent backdrop-blur-sm"
+          className="absolute top-0 bottom-0 left-0 flex items-center justify-center lg:w-24 h-full cursor-pointer bg-gradient-to-r from-primaryColor/30 via-primaryColor/20 to-transparent backdrop-blur-sm"
           onClick={handleOnLeftClick}
         >
           {/* left arrow */}
           <ChevronLeft color="#FFFF" className="w-12 h-12 lg:w-16 lg:h-16 " />
         </div>
         <div
-          className="absolute top-0 bottom-0 right-0 flex items-center justify-center lg:w-24 h-full cursor-pointer bg-gradient-to-l from-[#0155B8]/30 via-[#0155B8]/20 to-transparent backdrop-blur-sm"
+          className="absolute top-0 bottom-0 right-0 flex items-center justify-center lg:w-24 h-full cursor-pointer bg-gradient-to-l from-primaryColor/30 via-primaryColor/20 to-transparent backdrop-blur-sm"
           onClick={handleOnRightClick}
         >
           {/* right arrow */}
@@ -90,7 +89,7 @@ export default function HeroCarousel({}: Props) {
           <div
             key={index}
             className={`w-3 h-3 mx-1 rounded-full ${
-              currentSlide == index ? "bg-[#0155B8]" : "bg-[#0155B8]/30"
+              currentSlide == index ? "bg-primaryColor" : "bg-primaryColor/30"
             }`}
           />
         ))}

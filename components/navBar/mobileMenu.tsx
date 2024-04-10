@@ -63,13 +63,13 @@ function MobileMenu({}: Props) {
             ease: "easeOut",
             duration: 0.25,
           }}
-          className="absolute left-0 z-50 w-full h-screen overflow-hidden px-3 text-xl flex flex-col rounded-b-lg shadow-lg bg-[#F3F9FF]/70 backdrop-blur-sm  top-full "
+          className="absolute left-0 z-50 w-full h-screen overflow-hidden px-3 text-xl flex flex-col rounded-b-lg shadow-lg bg-backgroundColor/70 backdrop-blur-sm  top-full "
         >
           <MobileMenuLink
             variants={menuLinksVariants}
             menuLinksController={menuLinksController}
             delay={0}
-            className="min-w-fit font-bold py-3 text-[#0155B8]"
+            className="min-w-fit font-bold py-3 text-primaryColor"
           >
             On Sale!
           </MobileMenuLink>

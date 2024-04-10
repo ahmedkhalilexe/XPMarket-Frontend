@@ -14,7 +14,7 @@ function NavBar({}: Props) {
         {/* Nav Links */}
         {/* ul in dead center of view port*/}
         <ul className="absolute items-center justify-center flex-1 hidden gap-12 py-2 text-xl -translate-x-1/2 left-1/2 xl:flex">
-          <li className=" min-w-fit font-bold text-[#0155B8] cursor-pointer">
+          <li className=" min-w-fit font-bold text-primaryColor cursor-pointer">
             On Sale!
           </li>
           <li className="cursor-pointer">
@@ -39,7 +39,7 @@ function NavBar({}: Props) {
         {/* Mobile Menu */}
         <MobileMenu />
       </nav>
-      <div className=" absolute h-[2px] bg-[#0155B8] w-full"></div>
+      <div className=" absolute h-[2px] bg-primaryColor w-full"></div>
     </header>
   );
 }
