@@ -34,7 +34,7 @@ function MobileMenu({}: Props) {
     },
   };
   return (
-    <div className="block  xl:hidden">
+    <div className="block  lg:hidden">
       <Menu
         className="cursor-pointer"
         size={32}
