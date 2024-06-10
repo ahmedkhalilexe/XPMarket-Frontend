@@ -1,13 +1,13 @@
 import React from "react";
 import ProductCard from "../productCard/productCard";
 import {CircleChevronRight} from "lucide-react";
-import fetchProducts from "@/lib/fetchProducts";
 import {productType} from "@/lib/types";
+import fetchOnSaleProducts from "@/lib/fetchOnSaleProducts";
 
 type Props = {};
 
 export default async function OnSaleSection({}: Props) {
-    const products: productType[] | undefined = await fetchProducts();
+    const products: productType[] | undefined = await fetchOnSaleProducts();
     return (
         <div className="mx-8 mt-16 lg:mx-12 xl:mx-44">
             <h2 className="text-4xl font-bold text-center">On Sale!</h2>

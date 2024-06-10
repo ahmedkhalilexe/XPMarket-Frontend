@@ -1,5 +1,4 @@
-import React, { Suspense } from "react";
-import productImg from "../../assets/productImg.jpg";
+import React from "react";
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";

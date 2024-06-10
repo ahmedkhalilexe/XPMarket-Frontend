@@ -13,17 +13,21 @@ export default function Home() {
             <section>
 
                 {/* On Sale section */}
-                <Suspense fallback={<SectionLoading />}>
+                <Suspense fallback={<SectionLoading/>}>
                     <OnSaleSection/>
-                </Suspense >
+                </Suspense>
             </section>
             <section>
                 {/* New products! */}
-                <NewProductsSection/>
+                <Suspense fallback={<SectionLoading/>}>
+                    <NewProductsSection/>
+                </Suspense>
             </section>
             <section>
                 {/* More to love! */}
-                <MoreToLoveSection/>
+                <Suspense fallback={<SectionLoading/>}>
+                    <MoreToLoveSection/>
+                </Suspense>
             </section>
         </>
     );
