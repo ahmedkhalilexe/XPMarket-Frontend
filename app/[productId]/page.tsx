@@ -15,8 +15,7 @@ export default function page({ params }: Props) {
         <div className="flex-1 h-64">
           {/* details sections */}
           <h1 className="text-xl font-bold text-gray-900 lg:text-3xl ">
-            MSI infinite Gaming PC - i7 7700, NVIDIA GeForce GTX 1060, 1TB PCIe
-            Gen 4.0 x4 NVMe
+            {params.productId}
           </h1>
           <div className="flex items-end gap-4 mt-4 ">
             <h1 className="text-3xl font-bold lg:text-4xl">$100</h1>

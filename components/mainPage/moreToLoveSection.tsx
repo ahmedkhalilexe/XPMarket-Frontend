@@ -1,7 +1,6 @@
 import React from "react";
 import ProductCard from "../productCard/productCard";
 import {productType} from "@/lib/types";
-import fetchNewProducts from "@/lib/fetchNewProduct";
 import fetchAllProducts from "@/lib/fetchAllProducts";
 
 type Props = {};

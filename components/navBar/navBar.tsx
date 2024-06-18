@@ -1,7 +1,8 @@
-import { Menu, ShoppingCart, User } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import React from "react";
 import MobileMenu from "./mobileMenu";
 import Link from "next/link";
+import AuthButton from "@/components/navBar/authButton";
 
 type Props = {};
 
@@ -29,15 +30,15 @@ function NavBar({}: Props) {
         </ul>
         <div className="hidden gap-16 space-x-2 lg:flex">
           {/* Left buttons */}
+            <AuthButton />
+
+
           <Link href="#">
-            <User className="w-8 cursor-pointer" size={24} />
-          </Link>
-          <Link href="#">
-            <ShoppingCart className="w-8 cursor-pointer" size={24} />
+            <ShoppingCart className="w-8 cursor-pointer" size={24}/>
           </Link>
         </div>
         {/* Mobile Menu */}
-        <MobileMenu />
+        <MobileMenu/>
       </nav>
       <div className=" absolute h-[2px] bg-primaryColor w-full"></div>
     </header>
