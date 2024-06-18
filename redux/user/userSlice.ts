@@ -1,0 +1,66 @@
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {authType, userType} from "@/lib/types";
+import {RootState} from "@/redux/store";
+import axios from "axios";
+export const getRefreshToken = createAsyncThunk("users/getRefreshToken", async () => {
+    axios.defaults.withCredentials = true;
+    const res = await axios.get("http://localhost:3000/api/public/refresh/getRefresh");
+        return {user: res.data.user as userType, token: res.data.token as string};
+});
+const initialState: authType = {
+    isAuth: false,
+    user: {
+        userId: "",
+        userFirstName: "",
+        userLastName: "",
+        userEmail: "",
+        userRole: 0,
+    },
+    token: "",
+    status: "idle",
+}
+export const userSlice = createSlice({
+    name: "user",
+    initialState: initialState,
+    reducers: {
+        signIn: (state, action: PayloadAction<authType>) => {
+            const {userId, userFirstName, userLastName, userEmail, userRole} = action.payload.user;
+            state.isAuth = true;
+            state.user.userId = userId;
+            state.user.userFirstName = userFirstName;
+            state.user.userLastName = userLastName;
+            state.user.userEmail = userEmail;
+            state.user.userRole = userRole;
+            state.token = action.payload.token;
+            state.status = 'success'
+
+        },
+        signOut: (state) => {
+            state.isAuth = false;
+            state.user = initialState.user;
+            state.token = "";
+        },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getRefreshToken.pending, (state) => {
+            state.status = 'loading'
+        });
+        builder.addCase(getRefreshToken.rejected, (state) => {
+            state.status = 'failed'
+        });
+        builder.addCase(getRefreshToken.fulfilled, (state ,action)=>{
+            const {user, token} = action.payload;
+            state.isAuth = true;
+            state.user.userId = user.userId;
+            state.user.userFirstName = user.userFirstName;
+            state.user.userLastName = user.userLastName;
+            state.user.userEmail = user.userEmail;
+            state.user.userRole = user.userRole;
+            state.token = token;
+            state.status = 'success'
+        })
+    }
+});
+
+export const {signIn, signOut} = userSlice.actions;
+export const userSelector = (state: RootState) => state.user
