@@ -2,10 +2,20 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {authType, userType} from "@/lib/types";
 import {RootState} from "@/redux/store";
 import axios from "axios";
+
 export const getRefreshToken = createAsyncThunk("users/getRefreshToken", async () => {
     axios.defaults.withCredentials = true;
     const res = await axios.get("http://localhost:3000/api/public/refresh/getRefresh");
         return {user: res.data.user as userType, token: res.data.token as string};
+});
+export const signOut = createAsyncThunk("users/signOut", async () => {
+    axios.defaults.withCredentials = true;
+    try{
+        const res = await axios.post("http://localhost:3000/api/public/user/signOut");
+    }
+    catch(e){
+        console.error(e);
+    }
 });
 const initialState: authType = {
     isAuth: false,
@@ -35,11 +45,6 @@ export const userSlice = createSlice({
             state.status = 'success'
 
         },
-        signOut: (state) => {
-            state.isAuth = false;
-            state.user = initialState.user;
-            state.token = "";
-        },
     },
     extraReducers: (builder) => {
         builder.addCase(getRefreshToken.pending, (state) => {
@@ -58,9 +63,15 @@ export const userSlice = createSlice({
             state.user.userRole = user.userRole;
             state.token = token;
             state.status = 'success'
+        });
+        builder.addCase(signOut.fulfilled,(state)=>{
+            state.isAuth = false;
+            state.user = initialState.user;
+            state.token = "";
+            state.status = 'failed';
         })
     }
 });
 
-export const {signIn, signOut} = userSlice.actions;
+export const {signIn} = userSlice.actions;
 export const userSelector = (state: RootState) => state.user
