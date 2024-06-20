@@ -11,7 +11,7 @@ export const getRefreshToken = createAsyncThunk("users/getRefreshToken", async (
 export const signOut = createAsyncThunk("users/signOut", async () => {
     axios.defaults.withCredentials = true;
     try{
-        const res = await axios.post("http://localhost:3000/api/public/user/signOut");
+         await axios.post("http://localhost:3000/api/public/user/signOut");
     }
     catch(e){
         console.error(e);

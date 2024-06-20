@@ -7,14 +7,13 @@ import {
     DialogTitle,
     DialogTrigger
 } from "@/components/ui/dialog";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
 import {authType} from "@/lib/types";
 import {useState} from "react";
 import useSignInForm from "@/hooks/useSignInForm";
 import useSignInMutation from "@/hooks/useSignInMutation";
 import SignInForm from "@/components/navBar/SignInForm";
-import {Button} from "@/components/ui/button";
 import {signOut} from "@/redux/user/userSlice";
 import {useAppDispatch} from "@/hooks/reduxHooks";
 import {
