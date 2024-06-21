@@ -33,7 +33,7 @@ function NavBar({}: Props) {
             <AuthButton />
 
 
-          <Link href="#">
+          <Link href={"/cart"}>
             <ShoppingCart className="w-8 cursor-pointer" size={24}/>
           </Link>
         </div>

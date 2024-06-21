@@ -6,6 +6,7 @@ import CtaButton from "@/components/productPage/ctaButton";
 import {useQuery} from "react-query";
 import axios from "axios";
 import {productType} from "@/lib/types";
+import ProductPageLoading from "@/components/productPage/ProductPageLoading";
 type props = {
     productId: string
 };
@@ -18,14 +19,13 @@ function ProductPage({productId} : props) {
         }).then((res)=> res.data as productType) ;
     };
     const {data, isLoading} = useQuery("product", () => fetchProduct(productId));
-    console.log(data)
     return (
-        (isLoading) ? <div>loading...</div> :(data) ?(
+        (isLoading) ? <ProductPageLoading /> :(data) ?(
         <section className="mx-6 mb-10 md:mx-10 lg:10 xl:mx-20 xxl:mx-44 md:p-6">
             <div className="flex flex-col md:flex-row">
                 {/* top section */}
                 <ImageGalery productImgs={data.ProductImages}/>
-                <div className="flex-1 h-64">
+                <div className="flex-1 h-64 p-2 md:p-6">
                     {/* details sections */}
                     <h1 className="text-xl font-bold text-gray-900 lg:text-3xl ">
                         {data.productName}
