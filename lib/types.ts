@@ -27,4 +27,9 @@ export type authType = {
     user: userType;
     status?: "idle" | "loading" | "success" | "failed";
 };
+export type cartItemType = {
+    userCartProductId: string,
+    product: productType,
+    productQuantity: number,
+};
 export type TSignIn = z.infer<typeof zodSchemas.signInSchema>;
