@@ -1,4 +1,3 @@
-import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
 import {Checkbox} from "@/components/ui/checkbox";
 import {Label} from "@/components/ui/label";
 import CartListItem from "@/components/cartPage/CartListItem";
@@ -10,8 +9,8 @@ type Props = {
 
 function CartProductsList({cartItems}: Props) {
 
-    return <div className="w-full mt-8 min-h-fit px-6 bg-background drop-shadow-xl rounded-xl">
-        <div className=" pt-4 flex items-center gap-3">
+    return <div className="w-full mt-8 min-h-fit px-6 bg-background drop-shadow-xl rounded-xl py-2">
+        <div className="flex items-center gap-3">
             <Checkbox id="selectAll" className=" rounded-full w-5 h-5"/>
             <Label htmlFor={"selectAll"}>
                 <h2 className="text-2xl font-bold">Select All</h2>
@@ -25,6 +24,6 @@ function CartProductsList({cartItems}: Props) {
 
 
     </div>;
-};
+}
 
 export default CartProductsList;

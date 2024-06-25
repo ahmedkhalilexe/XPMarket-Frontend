@@ -4,11 +4,9 @@ import {Trash} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {authType, cartItemType} from "@/lib/types";
 import {useAppDispatch} from "@/hooks/reduxHooks";
-import {addSelectedCartItem, removeSelectedItem} from "@/redux/cart/cartSliser";
+import {addSelectedCartItem, removeCartItem, removeSelectedItem, updateCartItem} from "@/redux/cart/cartSlicer";
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
-import {useMutation} from "react-query";
-import updateCartItemQuantity from "@/lib/IncreaseCartItemQuantity";
 
 type Props = {
     item: cartItemType,
@@ -17,22 +15,6 @@ type Props = {
 function CartListItem({item}: Props) {
     const dispatch = useAppDispatch();
     const auth: authType = useSelector((state: RootState) => state.user);
-    const increaseQuantityMutation = useMutation({
-        mutationFn: async () => updateCartItemQuantity(item.userCartProductId, item.productQuantity + 1, auth.token),
-        onSuccess: () => {
-            item.productQuantity += 1;
-            dispatch(removeSelectedItem(item));
-            dispatch(addSelectedCartItem(item));
-        }
-    });
-    const decreaseQuantityMutation = useMutation({
-        mutationFn: async () => updateCartItemQuantity(item.userCartProductId, item.productQuantity - 1, auth.token),
-        onSuccess: () => {
-            item.productQuantity -= 1;
-            dispatch(removeSelectedItem(item));
-            dispatch(addSelectedCartItem(item));
-        }
-    });
 
     return (<>
         <div className=" w-full h-1 bg-slate-300 rounded-2xl my-4"/>
@@ -50,15 +32,20 @@ function CartListItem({item}: Props) {
                         }
                     }
                 }/>
-                <div className="w-56 h-32 bg-slate-200/40 drop-shadow-md rounded-lg flex justify-center items-center">
+                <div
+                    className="h-20 w-32 md:min-h-32 md:min-w-56 bg-slate-200/40 drop-shadow-md rounded-lg flex justify-center items-center">
                     <Image src="https://m.media-amazon.com/images/I/917bM+zDLWL._AC_SX679_.jpg" height={130} width={220}
-                           alt="" sizes={"100%"}/>
+                           alt="" sizes={"100%"} className={""}/>
                 </div>
             </div>
             <div className="h-full flex-1">
                 <div className="flex justify-between mb-2">
                     <h3 className="font-medium text-lg">{item.product.productName}</h3>
-                    <Button variant={"ghost"} className={"p-1"}>
+                    <Button variant={"ghost"} className={"p-1"} onClick={() => dispatch(removeCartItem({
+                        userCartProductId: item.userCartProductId,
+                        token: auth.token
+                    }))
+                    }>
                         <Trash/>
                     </Button>
                     {/* Details */}
@@ -67,12 +54,20 @@ function CartListItem({item}: Props) {
                 <div className="flex items-center justify-end w-full">
                     <Button
                         className={" h-7 w-7 p-0 rounded-full flex items-center justify-center text-xl bg-primaryColor"}
-                        onClick={() => increaseQuantityMutation.mutate()}
+                        onClick={() => dispatch(updateCartItem({
+                            userCartProductId: item.userCartProductId,
+                            token: auth.token,
+                            userCartProductQuantity: item.userCartProductQuantity + 1
+                        }))}
                     >+</Button>
-                    <span className={" text-xl font-bold px-2"}>{item.productQuantity}</span>
+                    <span className={" text-xl font-bold px-2"}>{item.userCartProductQuantity}</span>
                     <Button
                         className={" h-7 w-7 p-0 rounded-full flex items-center justify-center text-xl bg-primaryColor"}
-                        onClick={() => decreaseQuantityMutation.mutate()}
+                        onClick={() => dispatch(updateCartItem({
+                            userCartProductId: item.userCartProductId,
+                            token: auth.token,
+                            userCartProductQuantity: item.userCartProductQuantity - 1
+                        }))}
                     >-</Button>
                 </div>
 
