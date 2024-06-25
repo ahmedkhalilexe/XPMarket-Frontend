@@ -1,10 +1,12 @@
 import axios from "axios";
 
-const privateInstance = axios.create({
+const axiosInstance = axios.create({
     baseURL: "http://localhost:3000/api/public"
 });
-privateInstance.interceptors.request.use((config)=>{
+axiosInstance.interceptors.request.use((reponse) => {
     //TODO: get token from redux
-    config.headers.Authorization = ``;
-    return config
+    return reponse
+}, (error) => {
+    return Promise.reject(error);
 })
+export default axiosInstance;

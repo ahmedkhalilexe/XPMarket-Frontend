@@ -1,3 +1,4 @@
+"use client"
 import {User} from "lucide-react";
 import {
     Dialog,
@@ -24,14 +25,20 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import SignUpForm from "@/components/navBar/SignUpForm";
+import useSignUpForm from "@/hooks/useSignUpForm";
+import useSignUpMutation from "@/hooks/useSignUpMutation";
 
 type props = {};
 
 function UserPopOver({}: props) {
+    const [currentTab, setCurrentTab] = useState<"signIn" | "signUp">("signIn");
     const [isOpen, setIsOpen] = useState(false);
     const auth: authType = useSelector((state: RootState) => state.user);
     const signInMutation = useSignInMutation(setIsOpen);
     const signInForm = useSignInForm();
+    const signUpForm = useSignUpForm();
+    const signUpMutation = useSignUpMutation(setCurrentTab);
     const dispatch = useAppDispatch();
     return (
         !auth.isAuth ? (<Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -41,13 +48,31 @@ function UserPopOver({}: props) {
                     <p>sign in / sign up</p>
                 </div>
             </DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle className=" text-center text-2xl">Sign In</DialogTitle>
-                    <DialogDescription>
-                        <SignInForm signInForm={signInForm} signInMutation={signInMutation}/>
-                    </DialogDescription>
-                </DialogHeader>
+            <DialogContent className={"overflow-hidden"}>
+                <div>{
+                    currentTab === "signIn" ? <div className={"w-full shrink-0"}>
+                            <DialogHeader>
+                                <DialogTitle className=" text-3xl">Lets<br/>Start Shopping</DialogTitle>
+                                <DialogDescription className={"text-md"}>
+                                    please sign in or sign up to continue.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <SignInForm signInForm={signInForm} signInMutation={signInMutation} switchTab={setCurrentTab}/>
+                        </div> :
+                        <div className={"w-full shrink-0"}>
+                            <DialogHeader>
+                                <DialogTitle className=" text-3xl">Lets<br/>Start Shopping</DialogTitle>
+                                <DialogDescription className={"text-md"}>
+                                    please sign in or sign up to continue.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <SignUpForm signUpForm={signUpForm} signUpMutation={signUpMutation}
+                                        switchTab={setCurrentTab}/>
+                        </div>
+                }
+
+
+                </div>
             </DialogContent>
         </Dialog>) : (
             <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
@@ -60,8 +85,9 @@ function UserPopOver({}: props) {
                 <DropdownMenuContent className="w-56">
                     <DropdownMenuLabel className=" text-lg">My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator/>
-                    <DropdownMenuItem className=" text-md"><Link href="/#" className=" w-full">Profile</Link></DropdownMenuItem>
-                    <DropdownMenuItem className=" text-md cursor-pointer" onClick={()=>{
+                    <DropdownMenuItem className=" text-md"><Link href="/#"
+                                                                 className=" w-full">Profile</Link></DropdownMenuItem>
+                    <DropdownMenuItem className=" text-md cursor-pointer" onClick={() => {
                         dispatch(signOut())
                         setIsOpen(false)
                     }}>Logout</DropdownMenuItem>

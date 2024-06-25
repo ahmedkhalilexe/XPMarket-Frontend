@@ -19,7 +19,7 @@ export type userType = {
     userFirstName: string;
     userLastName: string;
     userEmail: string;
-    userRole: number ;
+    userRole: number;
 };
 export type authType = {
     isAuth: boolean;
@@ -30,6 +30,7 @@ export type authType = {
 export type cartItemType = {
     userCartProductId: string,
     product: productType,
-    productQuantity: number,
+    userCartProductQuantity: number,
 };
 export type TSignIn = z.infer<typeof zodSchemas.signInSchema>;
+export type TSignUp = z.infer<typeof zodSchemas.signUpSchema>;
