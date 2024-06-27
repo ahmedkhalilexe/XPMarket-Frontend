@@ -25,7 +25,7 @@ function CartPage() {
         },
     });
     const items = useSelector((state: RootState) => state.cart.cartItems);
-    return <div className="flex flex-col lg:flex-row gap-6 mx-6 md:mx-10 xl:mx-20 xxl:mx-44 h-screen">
+    return auth.isAuth ? (<div className="flex flex-col lg:flex-row gap-6 mx-6 md:mx-10 xl:mx-20 xxl:mx-44 h-screen">
         <div className=" flex-1 md:w-3/4 md:flex-none">
             {/* Cart Items */}
             <CartHeading count={items?.length || 0}/>
@@ -36,7 +36,7 @@ function CartPage() {
             {/* Summary */}
             <CartSummary/>
         </div>
-    </div>;
+    </div>) : null;
 }
 
 export default CartPage;
