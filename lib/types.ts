@@ -19,7 +19,7 @@ export type userType = {
     userFirstName: string;
     userLastName: string;
     userEmail: string;
-    userRole: number;
+    userRoleId: number;
 };
 export type authType = {
     isAuth: boolean;
@@ -32,5 +32,22 @@ export type cartItemType = {
     product: productType,
     userCartProductQuantity: number,
 };
+type orderedProductType = {
+    orderedItemQuantity: number;
+    product: {
+        productId: string;
+        productPrice: number
+    };
+};
+export type orderType = {
+    orderId: string;
+    orderStatus: string;
+    createdAt: string;
+    updatedAt: number;
+    userId: string;
+    OrderedProducts: orderedProductType[];
+};
+
 export type TSignIn = z.infer<typeof zodSchemas.signInSchema>;
 export type TSignUp = z.infer<typeof zodSchemas.signUpSchema>;
+export type TUpdateAccount = z.infer<typeof zodSchemas.updateAccountSchema>;

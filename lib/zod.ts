@@ -11,4 +11,9 @@ export const zodSchemas = {
         userFirstName: z.string(),
         userLastName: z.string()
     }),
+    updateAccountSchema: z.object({
+        userEmail: z.string().email(),
+        userFirstName: z.string(),
+        userLastName: z.string()
+    }),
 }
