@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, {useEffect} from 'react';
 import ImageGalery from "@/components/imageGalery/imageGalery";
 import SelectQuantity from "@/components/productPage/selectQuantity";
 import CtaButton from "@/components/productPage/ctaButton";
@@ -21,7 +21,9 @@ function ProductPage({productId}: props) {
         }).then((res) => res.data as productType);
     };
     const {data, isLoading} = useQuery("product", () => fetchProduct(productId));
-    document.title = `${data?.productName} - XPMarket`;
+    useEffect(() => {
+        document.title = `${data?.productName} - XPMarket`;
+    }, []);
     return (
         (isLoading) ? <ProductPageLoading/> : (data) ? (
             <section className="mx-6 mb-10 md:mx-10 lg:10 xl:mx-20 xxl:mx-44 md:p-6">

@@ -2,10 +2,10 @@
 import AccountSection from "@/components/Account/AccountSection";
 import OrdersSection from "@/components/Account/OrdersSection";
 import ClientProvider from "@/components/react query/ClientProvider";
-import {useRouter} from "next/navigation";
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
 import {useEffect} from "react";
+import {useRouter} from "next/navigation";
 
 type Props = {};
 
