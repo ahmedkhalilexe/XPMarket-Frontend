@@ -48,6 +48,10 @@ export type orderType = {
     OrderedProducts: orderedProductType[];
 };
 
+export interface recentOrderType extends orderType {
+    user: userType;
+}
+
 export type TSignIn = z.infer<typeof zodSchemas.signInSchema>;
 export type TSignUp = z.infer<typeof zodSchemas.signUpSchema>;
 export type TUpdateAccount = z.infer<typeof zodSchemas.updateAccountSchema>;

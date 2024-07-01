@@ -2,7 +2,6 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "../(user)/globals.css";
 import {cn} from "@/lib/utils";
-import NavBar from "@/components/navBar/navBar";
 import {ReactNode} from "react";
 import AuthProvider from "@/redux/authProvider";
 import {Toaster} from '@/components/ui/toaster'
@@ -22,10 +21,10 @@ export default function RootLayout({
     return (
         <html lang="en">
         <AuthProvider>
-            <body className={cn("flex bg-gray-100", inter.className)}>
+            <body className={cn("flex bg-gray-100/50", inter.className)}>
             {/*<NavBar/>*/}
             <SideBar/>
-            <div className={"flex-1 bg-white rounded-l-lg  min-h-screen"}>{children}</div>
+            <div className={"flex-1 py-6 rounded-l-lg  min-h-screen"}>{children}</div>
             <Toaster/>
             </body>
         </AuthProvider>

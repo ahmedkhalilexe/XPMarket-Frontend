@@ -7,9 +7,8 @@ import axios from "axios";
 import {orderType} from "@/lib/types";
 import calculateOrderPrice from "@/lib/calculateOrderPrice";
 
-type Props = {};
 
-function OrdersSection(props: Props) {
+function OrdersSection() {
     const auth = useSelector((state: RootState) => state.user);
     const {data, isLoading, isError} = useQuery("orders", async () => {
         return axios.get("http://localhost:3000/api/private/order/getAllOrdersByUser", {
@@ -40,6 +39,6 @@ function OrdersSection(props: Props) {
             </TableBody>
         </Table>
     </div>);
-};
+}
 
 export default OrdersSection;

@@ -1,12 +1,11 @@
 import {Button} from "@/components/ui/button";
-import {authType, cartItemType} from "@/lib/types";
+import {cartItemType} from "@/lib/types";
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
 import calculateSummary from "@/lib/calculateSummary";
 
-type Props = {};
 
-function CartSummary(props: Props) {
+function CartSummary() {
     const selectedCartItems: cartItemType[] = useSelector((state: RootState) => state.cart.selectedItems);
     const {total, itemCount} = calculateSummary(selectedCartItems);
 
@@ -22,6 +21,6 @@ function CartSummary(props: Props) {
         </div>
         <Button variant={"default"} className=" w-full text-2xl py-5 my-4 bg-primaryColor"> Checkout</Button>
     </div>);
-};
+}
 
 export default CartSummary;

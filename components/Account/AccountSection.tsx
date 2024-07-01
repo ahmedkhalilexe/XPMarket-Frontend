@@ -6,13 +6,9 @@ import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import useUpdateAccountForm from "@/hooks/useUpdateAccountForm";
 import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form";
-import {useMutation} from "react-query";
-import {TUpdateAccount} from "@/lib/types";
-import axios from "axios";
 
-type Props = {};
 
-function AccountSection(props: Props) {
+function AccountSection() {
     const auth = useSelector((state: RootState) => state.user);
     const [isUpdating, setIsUpdating] = useState(false);
     const userForm = useUpdateAccountForm(auth.user.userEmail, auth.user.userFirstName, auth.user.userLastName)

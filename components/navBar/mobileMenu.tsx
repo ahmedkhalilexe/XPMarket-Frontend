@@ -1,5 +1,5 @@
 "use client";
-import {Menu, ShoppingCart, User} from "lucide-react";
+import {Menu, ShoppingCart} from "lucide-react";
 import {motion, useAnimationControls} from "framer-motion";
 import React, {useState} from "react";
 import MobileMenuLink from "./mobileMenuLink";

@@ -7,8 +7,8 @@ import {UseMutationResult} from "react-query";
 import {RotateCw} from "lucide-react";
 
 type props = {
-    signInForm: UseFormReturn<{ userEmail: string, userPassword: string }, any, undefined>,
-    signInMutation: UseMutationResult<void, unknown, { userEmail: string, userPassword: string }, unknown>
+    signInForm: UseFormReturn<{ userEmail: string, userPassword: string }>,
+    signInMutation: UseMutationResult<void, unknown, { userEmail: string, userPassword: string }>
     switchTab: Dispatch<SetStateAction<"signIn" | "signUp">>
 };
 

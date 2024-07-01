@@ -23,7 +23,7 @@ function ProductPage({productId}: props) {
     const {data, isLoading} = useQuery("product", () => fetchProduct(productId));
     useEffect(() => {
         document.title = `${data?.productName} - XPMarket`;
-    }, []);
+    }, [data?.productName]);
     return (
         (isLoading) ? <ProductPageLoading/> : (data) ? (
             <section className="mx-6 mb-10 md:mx-10 lg:10 xl:mx-20 xxl:mx-44 md:p-6">

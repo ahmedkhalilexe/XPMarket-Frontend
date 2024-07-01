@@ -1,58 +1,80 @@
 "use client"
 import Link from "next/link";
-import React from "react";
-import {LogOut, Package, ReceiptText, Store, Users} from "lucide-react";
+import React, {useState} from "react";
+import {
+    LibraryBig,
+    LogOut,
+    Package,
+    ReceiptText,
+    SquareChevronLeft,
+    SquareChevronRight,
+    Store,
+    Users
+} from "lucide-react";
 import {authType} from "@/lib/types";
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
+import {cn} from "@/lib/utils";
 
-type Props = {};
 
-function SideBar(props: Props) {
+function SideBar() {
     const auth: authType = useSelector((state: RootState) => state.user);
+    const [isOpen, setIsOpen] = useState(true);
 
-
-    return (<nav className={"w-[14%] flex flex-col items-center justify-between py-3  bg-white mr-4 rounded-r-lg px-4"}>
-        <div className={"flex flex-col items-center  w-full"}>
-            <div className="text-3xl font-bold cursor-pointer mb-16"><Link href="/">XpMarket</Link></div>
-            <ul className={"w-full"}>
+    return auth.isAuth && auth.user.userRoleId === 1 ? (<nav
+        className={cn(" flex flex-col items-center justify-between py-6  bg-white mr-4 rounded-r-lg px-4", isOpen ? "w-[14%]" : "w-fit")}>
+        <div className={cn("flex flex-col items-center", isOpen ? "w-full" : "w-fit")}>
+            <div className="w-full flex items-center justify-between gap-3 text-3xl font-bold cursor-pointer mb-16">
+                <Link href="/">{isOpen ? "XPMarket" : "XP"}</Link>
+                {isOpen ?
+                    <SquareChevronLeft className={"text-primaryColor"} size={32} onClick={() => setIsOpen(!isOpen)}/> :
+                    <SquareChevronRight className={"text-primaryColor"} size={32} onClick={() => setIsOpen(!isOpen)}/>}
+            </div>
+            <ul className={isOpen ? "w-full" : "w-fit"}>
                 <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-sm transition-all"}>
                     <Link href={"/#"} className={"flex gap-5"}>
                         <Users/>
-                        <p className={" text-lg font-medium"}>Users</p>
+                        {isOpen ? <p className={" text-lg font-medium"}>Users</p> : null}
                     </Link>
                 </li>
                 <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-sm transition-all"}>
                     <Link href={"/#"} className={"flex gap-5"}>
                         <Package/>
-                        <p className={" text-lg font-medium"}>Products</p>
+                        {isOpen ? <p className={" text-lg font-medium"}>Products</p> : null}
+                    </Link>
+                </li>
+                <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-sm transition-all"}>
+                    <Link href={"/#"} className={"flex gap-5"}>
+                        <LibraryBig/>
+                        {isOpen ? <p className={" text-lg font-medium"}>Categories</p> : null}
                     </Link>
                 </li>
                 <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-md transition-all"}>
                     <Link href={"/#"} className={"flex gap-5"}>
                         <ReceiptText/>
-                        <p className={" text-lg font-medium"}>Orders</p>
+                        {isOpen ? <p className={" text-lg font-medium"}>Orders</p> : null}
                     </Link>
                 </li>
             </ul>
         </div>
-        <ul className={"w-full"}>
-            <div className={" h-0.5 bg-gray-200 w-full mb-2"}></div>
-            <h2 className={"text-center text-lg font-medium mb-4"}>Welcome back {auth.user.userFirstName}!</h2>
+        <ul className={isOpen ? "w-full" : "w-fit"}>
+            <div className={" h-0.5 rounded-full bg-primaryColor w-full mb-4"}></div>
+            {isOpen ? <h2 className={"text-center text-lg font-medium mb-4"}>Welcome
+                back {auth.user.userFirstName}!</h2> : null}
             <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-md transition-all"}>
                 <Link href={"/#"} className={"flex gap-5"}>
                     <Store/>
-                    <p className={" text-lg font-medium"}>Back to store</p>
+                    {isOpen ? <p className={" text-lg font-medium"}>Back to store</p> : null}
                 </Link>
             </li>
             <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-md transition-all"}>
                 <Link href={"/#"} className={"flex gap-5"}>
                     <LogOut/>
-                    <p className={" text-lg font-medium"}>Sign out</p>
+                    {isOpen ? <p className={" text-lg font-medium"}>Sign out</p> : null}
                 </Link>
             </li>
         </ul>
-    </nav>);
+    </nav>) : null;
 }
 
 export default SideBar;

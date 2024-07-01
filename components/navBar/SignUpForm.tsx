@@ -12,13 +12,13 @@ type props = {
         userLastName: string,
         userEmail: string,
         userPassword: string
-    }, any, undefined>
+    }>
     signUpMutation: UseMutationResult<void, unknown, {
         userEmail: string,
         userPassword: string,
         userFirstName: string,
         userLastName: string
-    }, unknown>
+    }>
     switchTab: Dispatch<SetStateAction<"signIn" | "signUp">>
 };
 
