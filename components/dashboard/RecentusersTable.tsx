@@ -10,7 +10,7 @@ function RecentUsersTable({token}: Props) {
     const {data, isLoading, isError} = useRecentUsersQuery(token);
 
     return <div
-        className={"w-4/5 flex flex-col gap-6 py-4 px-6 col-span-3 h-fit rounded-lg border-2 border-gray-300 bg-white drop-shadow-md"}>
+        className={"w-full md:w-4/5 flex flex-col gap-6 py-4 px-6 col-span-3 h-fit rounded-lg border-2 border-gray-300 bg-white drop-shadow-md"}>
         <h2 className={" font-medium text-lg"}>Recent users</h2>
         <Table>
             <TableHeader>

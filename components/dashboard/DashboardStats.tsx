@@ -8,7 +8,7 @@ type Props = {
 
 function DashboardStats({token}: Props) {
     const {data, isLoading, isError} = useDashboardStatsQuery(token);
-    return (<div className={" flex gap-3"}>
+    return (<div className={" flex flex-col md:flex-row gap-3"}>
         <div
             className={"flex flex-1 flex-col gap-6 py-4 px-6 col-span-1 h-32 rounded-lg border-2 border-gray-300 bg-white drop-shadow-md"}>
             <div className={"flex justify-between items-center"}>
