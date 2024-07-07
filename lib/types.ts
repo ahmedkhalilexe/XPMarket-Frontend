@@ -52,6 +52,20 @@ export interface recentOrderType extends orderType {
     user: userType;
 }
 
+export type userTableType = {
+    userId: string;
+    userFirstName: string;
+    userLastName: string;
+    userEmail: string;
+    userCreatedAt: string;
+    userUpdatedAt: string;
+    userRole: {
+        userRoleId: number;
+        userRoleName: string;
+    }
+};
 export type TSignIn = z.infer<typeof zodSchemas.signInSchema>;
 export type TSignUp = z.infer<typeof zodSchemas.signUpSchema>;
+export type TAddUser = z.infer<typeof zodSchemas.addUserSchema>;
+export type TEditUser = z.infer<typeof zodSchemas.editUserSchema>;
 export type TUpdateAccount = z.infer<typeof zodSchemas.updateAccountSchema>;
