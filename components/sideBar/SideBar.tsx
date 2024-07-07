@@ -17,12 +17,14 @@ import {RootState} from "@/redux/store";
 import {cn} from "@/lib/utils";
 import {useAppDispatch} from "@/hooks/reduxHooks";
 import {signOut} from "@/redux/user/userSlice";
+import {useRouter} from "next/navigation";
 
 
 function SideBar() {
     const auth: authType = useSelector((state: RootState) => state.user);
     const [isOpen, setIsOpen] = useState(true);
     const dispatch = useAppDispatch();
+    const router = useRouter();
 
     return auth.isAuth && auth.user.userRoleId === 1 ? (<nav
         className={cn("hidden lg:flex flex-col items-center justify-between py-6  bg-white mr-4 rounded-r-lg px-4", isOpen ? "w-[14%]" : "w-fit")}>
@@ -67,6 +69,7 @@ function SideBar() {
             <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-md transition-all"}>
                 <div onClick={() => {
                     dispatch(signOut());
+                    router.push("/");
                 }} className={"flex gap-5 cursor-pointer"}>
                     <LogOut/>
                     {isOpen ? <p className={" text-lg font-medium"}>Sign out</p> : null}
