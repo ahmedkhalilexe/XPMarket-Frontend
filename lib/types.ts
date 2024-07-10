@@ -64,8 +64,19 @@ export type userTableType = {
         userRoleName: string;
     }
 };
+
+export interface productTableType extends productType {
+    productCreatedAt: string;
+    productUpdatedAt: string;
+    productCategory: {
+        productCategoryId: number;
+        productCategoryName: string;
+    }
+}
+
 export type TSignIn = z.infer<typeof zodSchemas.signInSchema>;
 export type TSignUp = z.infer<typeof zodSchemas.signUpSchema>;
 export type TAddUser = z.infer<typeof zodSchemas.addUserSchema>;
 export type TEditUser = z.infer<typeof zodSchemas.editUserSchema>;
 export type TUpdateAccount = z.infer<typeof zodSchemas.updateAccountSchema>;
+export type TAddProduct = z.infer<typeof zodSchemas.addProductSchema>;
