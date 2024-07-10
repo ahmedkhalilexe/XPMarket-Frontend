@@ -37,19 +37,19 @@ function SideBar() {
             </div>
             <ul className={isOpen ? "w-full" : "w-fit"}>
                 <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-sm transition-all"}>
-                    <Link href={"dashboard/users"} className={"flex gap-5"}>
+                    <Link href={"/dashboard/users"} className={"flex gap-5"}>
                         <Users/>
                         {isOpen ? <p className={" text-lg font-medium"}>Users</p> : null}
                     </Link>
                 </li>
                 <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-sm transition-all"}>
-                    <Link href={"dashboard/products"} className={"flex gap-5"}>
+                    <Link href={"/dashboard/products"} className={"flex gap-5"}>
                         <Package/>
                         {isOpen ? <p className={" text-lg font-medium"}>Products</p> : null}
                     </Link>
                 </li>
                 <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-md transition-all"}>
-                    <Link href={"dashboard/orders"} className={"flex gap-5"}>
+                    <Link href={"/dashboard/orders"} className={"flex gap-5"}>
                         <ReceiptText/>
                         {isOpen ? <p className={" text-lg font-medium"}>Orders</p> : null}
                     </Link>
