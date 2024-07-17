@@ -6,7 +6,6 @@ import {ReactNode} from "react";
 import AuthProvider from "@/redux/authProvider";
 import {Toaster} from '@/components/ui/toaster'
 import SideBar from "@/components/sideBar/SideBar";
-import MobileMenu from "@/components/navBar/mobileMenu";
 import AdminMobileNav from "@/components/sideBar/AdminMobileNav";
 
 const inter = Inter({subsets: ["latin"]});
@@ -23,7 +22,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <AuthProvider>
-            <body className={cn("lg:flex bg-gray-100/50", inter.className)}>
+            <body className={cn("xl:flex bg-gray-100/50", inter.className)}>
             <SideBar/>
             <AdminMobileNav/>
             <div className={"lg:flex-1 py-6 rounded-l-lg  min-h-screen"}>{children}</div>

@@ -6,9 +6,7 @@ import {
     BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 
-type Props = {};
-
-function UsersHeadLinks(props: Props) {
+function UsersHeadLinks() {
 
     return (<Breadcrumb>
         <BreadcrumbList>
@@ -17,10 +15,10 @@ function UsersHeadLinks(props: Props) {
             </BreadcrumbItem>
             <BreadcrumbSeparator/>
             <BreadcrumbItem>
-                <BreadcrumbPage className={" text-lg"}>Users</BreadcrumbPage>
+                <BreadcrumbPage className={" text-lg text-primaryColor"}>Users</BreadcrumbPage>
             </BreadcrumbItem>
         </BreadcrumbList>
     </Breadcrumb>);
-};
+}
 
 export default UsersHeadLinks;

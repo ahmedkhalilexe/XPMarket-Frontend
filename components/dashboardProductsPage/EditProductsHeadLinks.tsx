@@ -6,9 +6,7 @@ import {
     BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 
-type Props = {};
-
-function EditProductsHeadLinks(props: Props) {
+function EditProductsHeadLinks() {
 
     return (<Breadcrumb>
         <BreadcrumbList>
@@ -17,11 +15,11 @@ function EditProductsHeadLinks(props: Props) {
             </BreadcrumbItem>
             <BreadcrumbSeparator/>
             <BreadcrumbItem>
-                <BreadcrumbLink href={'/dashboard/Products'} className={" text-lg"}>Products</BreadcrumbLink>
+                <BreadcrumbLink href={'/dashboard/products'} className={" text-lg"}>Products</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator/>
             <BreadcrumbItem>
-                <BreadcrumbPage className={" text-lg"}>Edit</BreadcrumbPage>
+                <BreadcrumbPage className={" text-lg text-primaryColor"}>Edit</BreadcrumbPage>
             </BreadcrumbItem>
         </BreadcrumbList>
     </Breadcrumb>);

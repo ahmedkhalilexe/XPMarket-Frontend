@@ -2,7 +2,6 @@
 import Link from "next/link";
 import React, {useState} from "react";
 import {
-    LibraryBig,
     LogOut,
     Package,
     ReceiptText,
@@ -27,7 +26,7 @@ function SideBar() {
     const router = useRouter();
 
     return auth.isAuth && auth.user.userRoleId === 1 ? (<nav
-        className={cn("hidden lg:flex flex-col items-center justify-between py-6  bg-white mr-4 rounded-r-lg px-4", isOpen ? "w-[14%]" : "w-fit")}>
+        className={cn("hidden xl:flex flex-col items-center justify-between py-6  bg-white mr-4 rounded-r-lg px-4", isOpen ? "w-[14%]" : "w-fit")}>
         <div className={cn("flex flex-col items-center", isOpen ? "w-full" : "w-fit")}>
             <div className="w-full flex items-center justify-between gap-3 text-3xl font-bold cursor-pointer mb-16">
                 <Link href="/">{isOpen ? "XPMarket" : "XP"}</Link>
@@ -66,7 +65,7 @@ function SideBar() {
                     {isOpen ? <p className={" text-lg font-medium"}>Back to store</p> : null}
                 </Link>
             </li>
-            <li className={"bg-white hover:bg-primaryColor/20 hover:text-primaryColor p-2 mb-5 rounded-lg hover:drop-shadow-md transition-all"}>
+            <li className={"bg-white hover:bg-red-400 hover:text-white p-2 mb-5 rounded-lg hover:drop-shadow-md transition-all"}>
                 <div onClick={() => {
                     dispatch(signOut());
                     router.push("/");

@@ -1,9 +1,8 @@
 "use client";
-import {LibraryBig, LogOut, Menu, Package, ReceiptText, ShoppingCart, Store, Users} from "lucide-react";
+import {LogOut, Menu, Package, ReceiptText, Store, Users} from "lucide-react";
 import {motion, useAnimationControls} from "framer-motion";
 import React, {useState} from "react";
 import Link from "next/link";
-import AuthButton from "@/components/navBar/authButton";
 import MobileMenuLink from "@/components/navBar/mobileMenuLink";
 import {useAppDispatch} from "@/hooks/reduxHooks";
 import {signOut} from "@/redux/user/userSlice";
@@ -40,7 +39,7 @@ function AdminMobileMenu({}: Props) {
         },
     };
     return (
-        <div className="block  lg:hidden">
+        <div className="block  xl:hidden">
             <Menu
                 className="cursor-pointer"
                 size={32}

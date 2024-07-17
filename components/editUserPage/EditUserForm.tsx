@@ -1,5 +1,4 @@
 "use client";
-import useAddUserMutation from "@/hooks/useAddUserMutation";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
@@ -24,7 +23,7 @@ function EditUserForm({token, user}: Props) {
                 <h2 className={" text-2xl md:text-3xl font-bold"}>Edit a user</h2>
                 <Button type={"submit"} className={"bg-primaryColor text-white"}>Edit User</Button>
             </div>
-            <div className={" flex gap-20"}>
+            <div className={" flex gap-5 lg:gap-20"}>
                 <FormField control={editUserForm.control} render={({field}) => (<FormItem className={"flex-1"}>
                     <FormLabel>
                         First Name
@@ -46,7 +45,7 @@ function EditUserForm({token, user}: Props) {
                 </FormItem>)} name={"userLastName"}>
                 </FormField>
             </div>
-            <div className={" flex gap-20 my-8"}>
+            <div className={" flex gap-5 lg:gap-20 my-8"}>
                 <FormField control={editUserForm.control} render={({field}) => (<FormItem className={" flex-1"}>
                     <FormLabel>
                         Email
@@ -79,6 +78,6 @@ function EditUserForm({token, user}: Props) {
             </div>
         </form>
     </Form>);
-};
+}
 
 export default EditUserForm;

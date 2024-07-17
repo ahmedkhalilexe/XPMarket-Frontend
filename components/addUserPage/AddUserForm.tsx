@@ -8,9 +8,8 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/c
 import {useAppSelector} from "@/hooks/reduxHooks";
 import useAddUserMutation from "@/hooks/useAddUserMutation";
 
-type Props = {};
 
-function AddUserForm(props: Props) {
+function AddUserForm() {
     const addUserForm = useAddUserForm();
     const auth = useAppSelector(state => state.user)
     const addUserMutation = useAddUserMutation(auth.token);
@@ -20,7 +19,7 @@ function AddUserForm(props: Props) {
                 <h2 className={" text-2xl md:text-3xl font-bold"}>Add a user</h2>
                 <Button type={"submit"} className={"bg-primaryColor text-white"}>Add User</Button>
             </div>
-            <div className={" flex gap-20"}>
+            <div className={" flex gap-5 lg:gap-20"}>
                 <FormField control={addUserForm.control} render={({field}) => (<FormItem className={"flex-1"}>
                     <FormLabel>
                         First Name
@@ -54,7 +53,7 @@ function AddUserForm(props: Props) {
             </FormItem>)} name={"userEmail"}>
 
             </FormField>
-            <div className={" flex gap-32 my-8"}>
+            <div className={" flex gap-5 lg:gap-32 my-8"}>
                 <FormField control={addUserForm.control} render={({field}) => (<FormItem className={" flex-1"}>
                     <FormLabel>
                         Password
@@ -88,6 +87,6 @@ function AddUserForm(props: Props) {
 
         </form>
     </Form>);
-};
+}
 
 export default AddUserForm;
