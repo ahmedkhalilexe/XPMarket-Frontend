@@ -89,3 +89,4 @@ export type TAddUser = z.infer<typeof zodSchemas.addUserSchema>;
 export type TEditUser = z.infer<typeof zodSchemas.editUserSchema>;
 export type TUpdateAccount = z.infer<typeof zodSchemas.updateAccountSchema>;
 export type TAddProduct = z.infer<typeof zodSchemas.addProductSchema>;
+export type TEditProduct = z.infer<typeof zodSchemas.editProductSchema>;

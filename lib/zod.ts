@@ -38,5 +38,12 @@ export const zodSchemas = {
         productDescription: z.string().min(1),
         productCategory: z.string().min(1),
         productImages: z.instanceof(FileList),
-    })
+    }),
+    editProductSchema: z.object({
+        productName: z.string().min(1),
+        productPrice: z.string().min(1),
+        productDescription: z.string().min(1),
+        productCategory: z.string().min(1),
+        productImages: z.instanceof(FileList),
+    }),
 };
