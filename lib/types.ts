@@ -82,6 +82,15 @@ export type TAddProductPost = {
     productImagesUri: string[];
 };
 
+export type TEditProductPost = {
+    productId: string;
+    productName: string;
+    productDescription: string;
+    productPrice: number;
+    productCategoryId: number;
+    productImagesUri: string[];
+};
+
 
 export type TSignIn = z.infer<typeof zodSchemas.signInSchema>;
 export type TSignUp = z.infer<typeof zodSchemas.signUpSchema>;

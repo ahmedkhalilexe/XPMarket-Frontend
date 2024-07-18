@@ -52,7 +52,7 @@ function AllProductsTable({token}: Props) {
                             alt="Product image"
                             className="aspect-square rounded-md object-contain"
                             height="64"
-                            src={product.ProductImages[0].productImageUri}
+                            src={product.ProductImages[0]?.productImageUri}
                             width="64"
                         />
                     </TableCell>

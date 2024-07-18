@@ -1,6 +1,5 @@
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
-import useAddProductsSubmit from "@/hooks/useAddProductsSubmit";
 import {Form} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
 import ProductDetailsInput from "@/components/addProductPage/ProductDetailsInput";
@@ -9,6 +8,7 @@ import ProductCategoryInput from "@/components/addProductPage/ProductCategoryInp
 import ProductImagesInput from "@/components/addProductPage/ProductImagesInput";
 import useEditProductForm from "@/hooks/useEditProductForm";
 import {productType} from "@/lib/types";
+import useEditProductsSubmit from "@/hooks/useEditProductsSubmit";
 
 type Props = {
     product: productType;
@@ -24,7 +24,7 @@ function EditProductForm({product}: Props) {
         productImages: {} as FileList,
 
     })
-    const onSubmit = useAddProductsSubmit(auth.token);
+    const onSubmit = useEditProductsSubmit(auth.token, product.productId);
     return (<div>
         <Form {...editProductForm}>
             <form onSubmit={editProductForm.handleSubmit((data) => onSubmit(data),)}>
