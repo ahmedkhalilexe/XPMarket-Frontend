@@ -8,7 +8,7 @@ const useAddProductForm = () => {
         resolver: zodResolver(zodSchemas.addProductSchema),
         defaultValues: {
             productName: "",
-            productPrice: "0",
+            productPrice: "1",
             productDescription: "",
             productCategory: "",
             productImages: {} as FileList,
