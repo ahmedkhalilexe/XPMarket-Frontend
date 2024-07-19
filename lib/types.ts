@@ -91,6 +91,7 @@ export type TEditProductPost = {
     productImagesUri: string[];
 };
 
+export type TCreateOrder = {}
 
 export type TSignIn = z.infer<typeof zodSchemas.signInSchema>;
 export type TSignUp = z.infer<typeof zodSchemas.signUpSchema>;

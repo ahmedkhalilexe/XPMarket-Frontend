@@ -7,12 +7,16 @@ import {useQuery} from "react-query";
 import axios from "axios";
 import {productType} from "@/lib/types";
 import ProductPageLoading from "@/components/productPage/ProductPageLoading";
+import useOnBuyProduct from "@/hooks/useOnBuyProduct";
+import {useSelector} from "react-redux";
+import {RootState} from "@/redux/store";
 
 type props = {
     productId: string
 };
 
 function ProductPage({productId}: props) {
+    const auth = useSelector((state: RootState) => state.user);
     const fetchProduct = async (productId: string) => {
         return await axios.get("http://localhost:3000/api/public/product/getProductById", {
             params: {
@@ -20,6 +24,9 @@ function ProductPage({productId}: props) {
             }
         }).then((res) => res.data as productType);
     };
+
+    const onBuyProduct = useOnBuyProduct(auth.token);
+
     const {data, isLoading} = useQuery("product", () => fetchProduct(productId));
     useEffect(() => {
         document.title = `${data?.productName} - XPMarket`;
@@ -44,8 +51,8 @@ function ProductPage({productId}: props) {
                         </div>
                         <SelectQuantity/>
                         <div className="flex gap-4 mt-6 md:mt-10">
-                            <CtaButton
-                                className="flex-1 py-3 text-xl leading-3 text-gray-100 lg:w-44 lg:flex-none bg-primaryColor">
+                            <CtaButton onClick={() => onBuyProduct(data)}
+                                       className="flex-1 py-3 text-xl leading-3 text-gray-100 lg:w-44 lg:flex-none bg-primaryColor">
                                 Buy now!
                             </CtaButton>
                             <CtaButton

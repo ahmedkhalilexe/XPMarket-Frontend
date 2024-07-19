@@ -14,10 +14,10 @@ function Page(props: Props) {
     const router = useRouter();
     useEffect(() => {
         document.title = "My Account - XPMarket"
-    }, []);
-    if (!auth.isAuth) {
-        router.push("/");
-    }
+        if (!auth.isAuth) {
+            router.push("/");
+        }
+    },);
     return auth.isAuth ? (
         <div className={"mx-6 md:mx-10 lg:10 xl:mx-20 xxl:mx-44"}>
             <h1 className={" text-3xl font-bold py-6"}> Account & Orders</h1>
