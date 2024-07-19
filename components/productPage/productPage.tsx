@@ -36,10 +36,11 @@ function ProductPage({productId}: props) {
                             {data.productName}
                         </h1>
                         <div className="flex items-end gap-4 mt-4 ">
-                            <h1 className="text-3xl font-bold lg:text-4xl">${data.productPrice}</h1>
-                            <h1 className="text-2xl font-semibold text-red-500 line-through">
-                                ${data.productOldPrice}
-                            </h1>
+                            <h1 className="text-3xl font-medium lg:text-3xl">${data.productPrice}</h1>
+                            {data.productOldPrice == data.productPrice || data.productOldPrice < data.productPrice ? null :
+                                <h1 className="text-2xl font-semibold text-red-500 line-through">
+                                    ${data.productOldPrice}
+                                </h1>}
                         </div>
                         <SelectQuantity/>
                         <div className="flex gap-4 mt-6 md:mt-10">

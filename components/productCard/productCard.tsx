@@ -16,7 +16,8 @@ export default function ProductCard({product}: Props) {
     const auth = useSelector((state: RootState) => state.user);
     const {mutate, isLoading, isSuccess} = useAddToCartMutation(product.productId, auth.token);
     return (
-        <div className="flex flex-col gap-3 p-2 rounded-lg sm:p-4 bg-lightBackground h-fit drop-shadow-xl">
+        <div
+            className="flex flex-col justify-between gap-3  p-2 rounded-lg sm:p-4 bg-lightBackground h-full drop-shadow-xl">
             <Image
                 alt=""
                 src={product?.ProductImages[0].productImageUri}
@@ -31,11 +32,12 @@ export default function ProductCard({product}: Props) {
             <div className="flex items-center justify-between">
                 <div>
                     <h1 className="text-lg font-bold lg:text-2xl">
-                        {product?.productPrice}
+                        ${product?.productPrice}
                     </h1>
-                    <h1 className="text-xs font-semibold text-red-500 line-through sm:text-sm">
-                        {product?.productOldPrice}
-                    </h1>
+                    {product?.productOldPrice == product?.productPrice || product?.productOldPrice < product?.productPrice ? null : (
+                        <h1 className="text-xs font-semibold text-red-500 line-through sm:text-sm">
+                            ${product?.productOldPrice}
+                        </h1>)}
                 </div>
                 <div
                     className={cn("p-2 border-2 border-black rounded-lg cursor-pointer", isSuccess ? "bg-green-400" : "")}>
