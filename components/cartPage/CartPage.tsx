@@ -9,14 +9,17 @@ import fetchCartItems from "@/lib/fetchCartItems";
 import {useAppDispatch} from "@/hooks/reduxHooks";
 import {addCartItems} from "@/redux/cart/cartSlicer";
 import {useRouter} from "next/navigation";
+import {useEffect} from "react";
 
 
 function CartPage() {
     const auth = useSelector((state: RootState) => state.user)
     const router = useRouter();
-    if (!auth.isAuth) {
-        router.push("/");
-    }
+    useEffect(() => {
+        if (!auth.isAuth) {
+            router.push("/");
+        }
+    },);
     const dispatch = useAppDispatch();
     useQuery("cartItems", () => fetchCartItems(auth.token), {
         enabled: auth.isAuth,
