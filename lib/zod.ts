@@ -37,13 +37,17 @@ export const zodSchemas = {
         productPrice: z.string().min(1),
         productDescription: z.string().min(1),
         productCategory: z.string().min(1),
-        productImages: z.instanceof(FileList),
+        productImages: z.unknown().transform((val) => {
+            return val as FileList;
+        }),
     }),
     editProductSchema: z.object({
         productName: z.string().min(1),
         productPrice: z.string().min(1),
         productDescription: z.string().min(1),
         productCategory: z.string().min(1),
-        productImages: z.instanceof(FileList),
+        productImages: z.unknown().transform((val) => {
+            return val as FileList;
+        }),
     }),
 };
