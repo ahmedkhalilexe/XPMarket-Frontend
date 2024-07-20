@@ -1,11 +1,11 @@
 import {useMutation} from "react-query";
 import {privateAxiosInstance} from "@/lib/axios";
-import {productType} from "@/lib/types";
+import {TCreateOrder} from "@/lib/types";
 
 const useProductBuyMutation = (token: string) => {
     return useMutation({
         mutationKey: "buyProduct",
-        mutationFn: async (data: productType) => {
+        mutationFn: async (data: TCreateOrder) => {
             console.log(data)
             return privateAxiosInstance.post("/order/createOrder", {
                 orderedProducts: [data]
