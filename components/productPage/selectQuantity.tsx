@@ -1,20 +1,22 @@
-import React from "react";
+import React, {ForwardedRef, forwardRef} from "react";
 
 type Props = {};
 
-export default function SelectQuantity({}: Props) {
-  return (
-    <select
-      about="Quantity"
-      className="w-1/2 p-2 mt-12 font-semibold rounded-lg cursor-pointer lg:w-44 bg-lightBackground drop-shadow-md"
-      name="quantity"
-      id="quantity"
-    >
-      <option value="1">Quantity: 1</option>
-      <option value="2">Quantity: 2</option>
-      <option value="3">Quantity: 3</option>
-      <option value="4">Quantity: 4</option>
-      <option value="5">Quantity: 5</option>
-    </select>
-  );
-}
+const SelectQuantity = forwardRef<HTMLSelectElement, Props>((props: Props, ref: ForwardedRef<HTMLSelectElement>) => {
+    return (
+        <div className="flex items-center gap-4 mt-4">
+            <label htmlFor="quantity" className="text-lg font-semibold">Quantity:</label>
+            <select ref={ref} id="quantity" className="px-2 py-1 border border-gray-300 rounded-md">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    );
+});
+
+SelectQuantity.displayName = "SelectQuantity";
+
+export default SelectQuantity;

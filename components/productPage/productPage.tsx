@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import ImageGalery from "@/components/imageGalery/imageGalery";
 import SelectQuantity from "@/components/productPage/selectQuantity";
 import CtaButton from "@/components/productPage/ctaButton";
@@ -17,6 +17,7 @@ type props = {
 
 function ProductPage({productId}: props) {
     const auth = useSelector((state: RootState) => state.user);
+    const selectRef = useRef<HTMLSelectElement>(null)
     const fetchProduct = async (productId: string) => {
         return await axios.get("http://localhost:3000/api/public/product/getProductById", {
             params: {
@@ -49,10 +50,11 @@ function ProductPage({productId}: props) {
                                     ${data.productOldPrice}
                                 </h1>}
                         </div>
-                        <SelectQuantity/>
+                        <SelectQuantity ref={selectRef}/>
                         <div className="flex gap-4 mt-6 md:mt-10">
-                            <CtaButton onClick={() => onBuyProduct(data)}
-                                       className="flex-1 py-3 text-xl leading-3 text-gray-100 lg:w-44 lg:flex-none bg-primaryColor">
+                            <CtaButton
+                                onClick={() => onBuyProduct({...data, quantity: Number(selectRef.current?.value) || 1})}
+                                className="flex-1 py-3 text-xl leading-3 text-gray-100 lg:w-44 lg:flex-none bg-primaryColor">
                                 Buy now!
                             </CtaButton>
                             <CtaButton
