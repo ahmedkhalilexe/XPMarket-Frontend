@@ -4,7 +4,7 @@ import {loadStripe} from "@stripe/stripe-js";
 
 const useOnBuyProduct = (token: string) => {
     const productBuyMutation = useProductBuyMutation(token);
-    const stripePromise = loadStripe("pk_test_51Oz4PrFXpJnJjiltk2nF8HkOvAA7KHuZudARzB301V2fHnf5tslxdQHAg7mHTzFBGdv14uubhu6gzT2eRRJOoXSD00n5lAgoe6");
+    const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string);
     return async (data: productType) => {
         try {
             const session = await productBuyMutation.mutateAsync(data);
