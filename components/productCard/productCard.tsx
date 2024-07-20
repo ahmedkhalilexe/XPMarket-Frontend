@@ -27,7 +27,7 @@ export default function ProductCard({product}: Props) {
                 className="object-contain min-w-full rounded-xl h-20 md:h-40 lg:h-36"
             />
             <h1 className="text-sm md:text-xl font-semibold line-clamp-2 ">
-                <Link href={"/" + product.productId}>{product?.productName}</Link>
+                <Link href={"/product/" + product.productId}>{product?.productName}</Link>
             </h1>
             <div className="flex items-center justify-between">
                 <div>
