@@ -13,7 +13,9 @@ const useProductBuyMutation = (token: string) => {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            }).then((res) => res.data as { message: string, session: { id: string } });
+            }).then((res) => {
+                return res.data as { message: string, session: { id: string } }
+            });
         }
     })
 }

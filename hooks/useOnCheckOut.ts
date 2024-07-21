@@ -35,7 +35,8 @@ const useOnCheckOut = (token: string) => {
     return async (data: TCreateOrder[]) => {
         const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string);
         const session = await checkOutMutation.mutateAsync(data);
-        const stripe = await stripePromise.then((res) => res?.redirectToCheckout({sessionId: session.session.id}));
+        await stripePromise.then((res) => res?.redirectToCheckout({sessionId: session.session.id,}));
+
     }
 }
 
