@@ -3,21 +3,32 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/c
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
 import {useQuery} from "react-query";
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 import {orderType} from "@/lib/types";
 import calculateOrderPrice from "@/lib/calculateOrderPrice";
+import {getRefreshToken} from "@/redux/user/userSlice";
+import {useAppDispatch} from "@/hooks/reduxHooks";
 
 
 function OrdersSection() {
     const auth = useSelector((state: RootState) => state.user);
-    const {data, isLoading, isError} = useQuery("orders", async () => {
-        return axios.get("http://localhost:3000/api/private/order/getAllOrdersByUser", {
-            headers: {
-                Authorization: `Bearer ${auth.token}`,
-            },
-        }).then((res => res.data as orderType[]))
+    const dispatch = useAppDispatch();
+    const {data, isLoading, isError, error} = useQuery({
+        queryKey: "orders",
+        queryFn: async () => {
+            return axios.get("http://localhost:3000/api/private/order/getAllOrdersByUser", {
+                headers: {
+                    Authorization: `Bearer ${auth.token}`,
+                },
+            }).then((res => res.data as orderType[]))
+        },
+        onError: (error: AxiosError) => {
+            if (error.response?.status === 403) {
+                dispatch(getRefreshToken());
+            }
+        },
     });
-    return (<div className={"px-3"}>
+    return (<div className={"px-3 h-[600px]"}>
         <Table>
             <TableHeader>
                 <TableRow>
