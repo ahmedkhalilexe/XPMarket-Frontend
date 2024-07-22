@@ -33,9 +33,9 @@ function CartListItem({item}: Props) {
                     }
                 }/>
                 <div
-                    className="h-20 w-32 md:min-h-32 md:min-w-56 bg-slate-200/40 drop-shadow-md rounded-lg flex justify-center items-center">
-                    <Image src="https://m.media-amazon.com/images/I/917bM+zDLWL._AC_SX679_.jpg" height={130} width={220}
-                           alt="" sizes={"100%"} className={""}/>
+                    className="h-20 w-32 md:min-h-32 md:min-w-56 rounded-lg flex justify-center items-center">
+                    <Image src={item.product.ProductImages[0].productImageUri} height={130} width={220}
+                           alt="" sizes={"100%"} className={"max-h-32 object-contain"}/>
                 </div>
             </div>
             <div className="h-full flex-1">
