@@ -14,7 +14,7 @@ function Page(props: Props) {
     const router = useRouter();
     useEffect(() => {
         document.title = "My Account - XPMarket"
-        if (!auth.isAuth) {
+        if (!auth.isAuth && auth.status === "failed") {
             router.push("/");
         }
     },);
