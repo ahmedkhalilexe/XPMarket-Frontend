@@ -54,7 +54,7 @@ function ProductPage({productId}: props) {
                         <div className="flex gap-4 mt-6 md:mt-10">
                             <CtaButton
                                 onClick={() => onBuyProduct({...data, quantity: Number(selectRef.current?.value) || 1})}
-                                className="flex-1 py-3 text-xl leading-3 text-gray-100 lg:w-44 lg:flex-none bg-primaryColor">
+                                className="flex-1 py-3 text-xl leading-3 text-gray-100 lg:w-44 lg:flex-none bg-primaryColor hover:bg-blue-900">
                                 Buy now!
                             </CtaButton>
                             <CtaButton
