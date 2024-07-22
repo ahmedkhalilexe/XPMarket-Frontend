@@ -6,7 +6,6 @@ import ClientProvider from "@/components/react query/ClientProvider";
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
 import {useRouter} from "next/navigation";
-import {useLayoutEffect} from "react";
 
 
 function Page() {
