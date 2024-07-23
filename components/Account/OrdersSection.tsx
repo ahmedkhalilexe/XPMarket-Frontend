@@ -29,7 +29,7 @@ function OrdersSection() {
             }
         },
     });
-    return (<div className={"px-3 min-h-fit max-h-[600px]"}>
+    return (<div className={"px-3 min-h-fit h-[600px]"}>
         <Table>
             <TableHeader>
                 <TableRow>
