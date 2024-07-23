@@ -30,6 +30,6 @@ function ProductPriceInput({addUserForm}: Props) {
 
                    </FormItem>)} name={"productPrice"}/>
     </div>);
-};
+}
 
 export default ProductPriceInput;

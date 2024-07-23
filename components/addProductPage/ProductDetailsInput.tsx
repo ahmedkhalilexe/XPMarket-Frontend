@@ -38,6 +38,6 @@ function ProductDetailsInput({addUserForm}: Props) {
             </FormItem>)} name={"productDescription"}/>
         </div>
     </div>);
-};
+}
 
 export default ProductDetailsInput;

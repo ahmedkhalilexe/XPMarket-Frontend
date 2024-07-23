@@ -4,12 +4,12 @@ import ImageGalery from "@/components/imageGalery/imageGalery";
 import SelectQuantity from "@/components/productPage/selectQuantity";
 import CtaButton from "@/components/productPage/ctaButton";
 import {useQuery} from "react-query";
-import axios from "axios";
 import {productType} from "@/lib/types";
 import ProductPageLoading from "@/components/productPage/ProductPageLoading";
 import useOnBuyProduct from "@/hooks/useOnBuyProduct";
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
+import {publicAxiosInstance} from "@/lib/axios";
 
 type props = {
     productId: string
@@ -19,7 +19,7 @@ function ProductPage({productId}: props) {
     const auth = useSelector((state: RootState) => state.user);
     const selectRef = useRef<HTMLSelectElement>(null)
     const fetchProduct = async (productId: string) => {
-        return await axios.get("http://localhost:3000/api/public/product/getProductById", {
+        return await publicAxiosInstance.get("/product/getProductById", {
             params: {
                 productId: productId
             }

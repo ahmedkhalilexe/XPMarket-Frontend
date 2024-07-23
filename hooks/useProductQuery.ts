@@ -1,5 +1,5 @@
 import {useQuery} from "react-query";
-import {privateAxiosInstance, publicAxiosInstance} from "@/lib/axios";
+import {publicAxiosInstance} from "@/lib/axios";
 import {productType} from "@/lib/types";
 
 const useProductQuery = (productId: string, token: string) => {

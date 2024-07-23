@@ -1,8 +1,8 @@
-import axios from "axios";
 import {authType} from "@/lib/types";
+import {publicAxiosInstance} from "@/lib/axios";
 
 const PostSignIn = async (userEmail: string, userPassword: string) => {
-    return axios.post("http://localhost:3000/api/public/user/signIn", {
+    return publicAxiosInstance.post("/user/signIn", {
         userEmail,
         userPassword
     }).then((res) => res.data as authType);

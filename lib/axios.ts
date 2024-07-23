@@ -4,10 +4,10 @@ import {getRefreshToken} from "@/redux/user/userSlice";
 
 const dispatch = store.dispatch;
 const publicAxiosInstance = axios.create({
-    baseURL: "http://localhost:3000/api/public"
+    baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/public`
 });
 const privateAxiosInstance = axios.create({
-    baseURL: "http://localhost:3000/api/private"
+    baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/private`
 });
 
 

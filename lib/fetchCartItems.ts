@@ -1,9 +1,9 @@
-import axios from "axios";
 import {cartItemType} from "@/lib/types";
+import {privateAxiosInstance} from "@/lib/axios";
 
 const fetchCartItems = async (token: string) => {
 
-    const res = await axios.get("http://localhost:3000/api/private/cart/getCart", {
+    const res = await privateAxiosInstance.get("/cart/getCart", {
         headers: {
             Authorization: `Bearer ${token}`
         }

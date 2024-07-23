@@ -1,6 +1,6 @@
-import axios from "axios";
 import {useMutation} from "react-query";
 import {useToast} from "@/components/ui/use-toast";
+import {privateAxiosInstance} from "@/lib/axios";
 
 const useAddToCartMutation = (productId: string, token: string, userCartProductQuantity?: number) => {
     const {toast} = useToast();
@@ -14,7 +14,7 @@ const useAddToCartMutation = (productId: string, token: string, userCartProductQ
     } = useMutation(["cart/addToCart", productId], {
 
             mutationFn: async () => {
-                return await axios.post("http://localhost:3000/api/private/cart/addCart", {
+                return await privateAxiosInstance.post("/cart/addCart", {
                     productId,
                     userCartProductQuantity
                 }, {

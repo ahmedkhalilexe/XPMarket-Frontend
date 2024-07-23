@@ -2,16 +2,17 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {authType, userType} from "@/lib/types";
 import {RootState} from "@/redux/store";
 import axios from "axios";
+import {publicAxiosInstance} from "@/lib/axios";
 
 export const getRefreshToken = createAsyncThunk("users/getRefreshToken", async () => {
     axios.defaults.withCredentials = true;
-    const res = await axios.get("http://localhost:3000/api/public/refresh/getRefresh");
+    const res = await publicAxiosInstance.get("/refresh/getRefresh");
     return {user: res.data.user as userType, token: res.data.token as string};
 });
 export const signOut = createAsyncThunk("users/signOut", async () => {
     axios.defaults.withCredentials = true;
     try {
-        await axios.post("http://localhost:3000/api/public/user/signOut");
+        await publicAxiosInstance.post("/user/signOut");
     } catch (e) {
         console.error(e);
     }

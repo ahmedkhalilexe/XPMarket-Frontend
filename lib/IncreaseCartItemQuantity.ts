@@ -1,7 +1,7 @@
-import axios from "axios";
+import {privateAxiosInstance} from "@/lib/axios";
 
 const updateCartItemQuantity = (userCartProductId: string, userCartProductQuantity: number, token: string) => {
-    return axios.put("http://localhost:3000/api/private/cart/updateCartItem", {
+    return privateAxiosInstance.put("/cart/updateCartItem", {
         userCartProductId,
         userCartProductQuantity
     }, {

@@ -25,6 +25,6 @@ function AddProductHeadLinks(props: Props) {
             </BreadcrumbItem>
         </BreadcrumbList>
     </Breadcrumb>);
-};
+}
 
 export default AddProductHeadLinks;

@@ -3,11 +3,12 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/c
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
 import {useQuery} from "react-query";
-import axios, {AxiosError} from "axios";
+import {AxiosError} from "axios";
 import {orderType} from "@/lib/types";
 import calculateOrderPrice from "@/lib/calculateOrderPrice";
 import {getRefreshToken} from "@/redux/user/userSlice";
 import {useAppDispatch} from "@/hooks/reduxHooks";
+import {privateAxiosInstance} from "@/lib/axios";
 
 
 function OrdersSection() {
@@ -16,19 +17,19 @@ function OrdersSection() {
     const {data, isLoading, isError, error} = useQuery({
         queryKey: "orders",
         queryFn: async () => {
-            return axios.get("http://localhost:3000/api/private/order/getAllOrdersByUser", {
+            return privateAxiosInstance.get("/order/getAllOrdersByUser", {
                 headers: {
                     Authorization: `Bearer ${auth.token}`,
                 },
             }).then((res => res.data as orderType[]))
         },
-        onError: (error: AxiosError) => {
+        onError: async (error: AxiosError) => {
             if (error.response?.status === 403) {
-                dispatch(getRefreshToken());
+                await dispatch(getRefreshToken());
             }
         },
     });
-    return (<div className={"px-3 h-[600px]"}>
+    return (<div className={"px-3 min-h-fit max-h-[600px]"}>
         <Table>
             <TableHeader>
                 <TableRow>

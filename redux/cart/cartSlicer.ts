@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {cartItemType} from "@/lib/types";
-import axios from "axios";
+import {privateAxiosInstance} from "@/lib/axios";
 
 const initialState = {
     cartItems: [] as cartItemType[],
@@ -11,7 +11,7 @@ export const updateCartItem = createAsyncThunk("cart/updateCartItem", async (dat
     token: string,
     userCartProductQuantity: number
 }) => {
-    await axios.put("http://localhost:3000/api/private/cart/updateCartItem", data, {
+    await privateAxiosInstance.put("/cart/updateCartItem", data, {
         headers: {
             Authorization: `Bearer ${data.token}`
         }
@@ -22,7 +22,7 @@ export const removeCartItem = createAsyncThunk("cart/removeCartItem", async (dat
     userCartProductId: string,
     token: string
 }) => {
-    await axios.delete("http://localhost:3000/api/private/cart/deleteFromCart",
+    await privateAxiosInstance.delete("/cart/deleteFromCart",
         {
             params: {userCartProductId: data.userCartProductId},
             headers: {

@@ -10,7 +10,6 @@ import {
 import {Button} from "@/components/ui/button";
 import {MoreHorizontal} from "lucide-react";
 import useAllUsersQuery from "@/hooks/useAllUsersQuery";
-import {useAppSelector} from "@/hooks/reduxHooks";
 import Link from "next/link";
 import useDeleteUserMutation from "@/hooks/useDeleteUserMutation";
 

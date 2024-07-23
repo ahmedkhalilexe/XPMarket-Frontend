@@ -36,6 +36,6 @@ function ProductCategoryInput({addUserForm}: Props) {
 
                    </FormItem>)} name={"productCategory"}/>
     </div>);
-};
+}
 
 export default ProductCategoryInput;

@@ -91,6 +91,6 @@ function ProductImagesInput({addUserForm}: Props) {
             </div>
         </div>
     </div>);
-};
+}
 
 export default ProductImagesInput;

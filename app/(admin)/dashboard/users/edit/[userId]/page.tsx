@@ -7,7 +7,6 @@ import {
     BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import ClientProvider from "@/components/react query/ClientProvider";
-import EditUserForm from "@/components/editUserPage/EditUserForm";
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
 import {useRouter} from "next/navigation";

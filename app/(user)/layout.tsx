@@ -21,7 +21,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <AuthProvider>
-            <body className={cn(" overflow-x-hidden bg-slate-100/30 relative", inter.className)}>
+            <body className={cn(" overflow-x-hidden bg-slate-100/30 relative min-h-screen", inter.className)}>
             <NavBar/>
             {children}
             <Toaster/>

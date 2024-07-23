@@ -38,6 +38,6 @@ function Page(props: Props) {
             </ClientProvider>
         </div>
     </div>) : null;
-};
+}
 
 export default Page;
