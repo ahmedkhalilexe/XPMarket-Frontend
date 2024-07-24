@@ -86,11 +86,12 @@ function UserPopOver({}: props) {
                     <DropdownMenuLabel
                         className=" text-lg">{auth.user.userFirstName + " " + auth.user.userLastName}</DropdownMenuLabel>
                     <DropdownMenuSeparator/>
-                    <DropdownMenuItem className=" text-md"><Link href="/account"
-                                                                 className=" w-full">My
+                    <DropdownMenuItem className=" text-md" onClick={() => setIsOpen(!open)}><Link href="/account"
+                                                                                                  className=" w-full">My
                         Account</Link></DropdownMenuItem>
-                    {auth.user.userRoleId === 1 && <DropdownMenuItem className=" text-md"><Link href="/dashboard"
-                                                                                                className=" w-full">Dashboard</Link></DropdownMenuItem>}
+                    {auth.user.userRoleId === 1 &&
+                        <DropdownMenuItem className=" text-md" onClick={() => setIsOpen(!open)}><Link href="/dashboard"
+                                                                                                      className=" w-full">Dashboard</Link></DropdownMenuItem>}
                     <DropdownMenuItem className=" text-md cursor-pointer" onClick={() => {
                         dispatch(signOut())
                         setIsOpen(false)

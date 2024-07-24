@@ -102,6 +102,10 @@ function MobileMenu({}: Props) {
                         menuLinksController={menuLinksController}
                         className="flex gap-3 py-3"
                         delay={0.4}
+                        onClick={() => {
+                            menuController.start("close");
+                            menuLinksController.start("close");
+                        }}
                     >
                         <AuthButton/>
                     </MobileMenuLink>
@@ -109,6 +113,10 @@ function MobileMenu({}: Props) {
                         variants={menuLinksVariants}
                         menuLinksController={menuLinksController}
                         delay={0.4}
+                        onClick={() => {
+                            menuController.start("close");
+                            menuLinksController.start("close");
+                        }}
                     >
                         <Link href={'/cart'} className="flex gap-3 py-3">
                             <ShoppingCart size={24}/>

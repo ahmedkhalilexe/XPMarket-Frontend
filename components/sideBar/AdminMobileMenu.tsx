@@ -74,8 +74,12 @@ function AdminMobileMenu({}: Props) {
                         variants={menuLinksVariants}
                         menuLinksController={menuLinksController}
                         delay={0}
+                        onClick={() => {
+                            menuController.start("close");
+                            menuLinksController.start("close");
+                        }}
                     >
-                        <Link href={"dashboard/users"} className={"flex gap-3"}>
+                        <Link href={"/dashboard/users"} className={"flex gap-3"}>
                             <Users/>
                             <p className={" text-lg font-medium"}>Users</p>
                         </Link>
@@ -84,8 +88,12 @@ function AdminMobileMenu({}: Props) {
                         variants={menuLinksVariants}
                         menuLinksController={menuLinksController}
                         delay={0.1}
+                        onClick={() => {
+                            menuController.start("close");
+                            menuLinksController.start("close");
+                        }}
                     >
-                        <Link href={"dashboard/products"} className={"flex gap-3"}>
+                        <Link href={"/dashboard/products"} className={"flex gap-3"}>
                             <Package/>
                             <p className={" text-lg font-medium"}>Products</p>
                         </Link>
@@ -94,8 +102,12 @@ function AdminMobileMenu({}: Props) {
                         variants={menuLinksVariants}
                         menuLinksController={menuLinksController}
                         delay={0.3}
+                        onClick={() => {
+                            menuController.start("close");
+                            menuLinksController.start("close");
+                        }}
                     >
-                        <Link href={"dashboard/orders"} className={"flex gap-3"}>
+                        <Link href={"/dashboard/orders"} className={"flex gap-3"}>
                             <ReceiptText/>
                             <p className={" text-lg font-medium"}>Orders</p>
                         </Link>
@@ -104,6 +116,10 @@ function AdminMobileMenu({}: Props) {
                         variants={menuLinksVariants}
                         menuLinksController={menuLinksController}
                         delay={0.4}
+                        onClick={() => {
+                            menuController.start("close");
+                            menuLinksController.start("close");
+                        }}
                     >
                         <Link href={"/"} className={"flex gap-3"}>
                             <Store/>
@@ -117,6 +133,8 @@ function AdminMobileMenu({}: Props) {
                         delay={0.4}
                         onClick={() => {
                             dispatch(signOut());
+                            menuController.start("close");
+                            menuLinksController.start("close");
                         }}
                     >
                         <LogOut/>
