@@ -16,7 +16,7 @@ function CartPage() {
     const auth = useSelector((state: RootState) => state.user)
     const router = useRouter();
     useEffect(() => {
-        if (!auth.isAuth) {
+        if (!auth.isAuth && auth.status === "failed") {
             router.push("/");
         }
     },);
@@ -28,18 +28,19 @@ function CartPage() {
         },
     });
     const items = useSelector((state: RootState) => state.cart.cartItems);
-    return auth.isAuth ? (<div className="flex flex-col lg:flex-row gap-6 mx-6 md:mx-10 xl:mx-20 xxl:mx-44 h-screen">
-        <div className=" flex-1 md:w-3/4 md:flex-none">
-            {/* Cart Items */}
-            <CartHeading count={items?.length || 0}/>
-            {items.length > 0 ? <CartProductsList cartItems={items}/> : null}
+    return auth.isAuth ? (
+        <div className="flex flex-col lg:flex-row gap-6 mx-6 md:mx-10 xl:mx-20 xxl:mx-44 min-h-screen">
+            <div className=" flex-1 md:w-3/4 md:flex-none">
+                {/* Cart Items */}
+                <CartHeading count={items?.length || 0}/>
+                {items.length > 0 ? <CartProductsList cartItems={items}/> : null}
 
-        </div>
-        <div className="flex-1 md:w-1/4 md:flex-none">
-            {/* Summary */}
-            <CartSummary/>
-        </div>
-    </div>) : null;
+            </div>
+            <div className="flex-1 md:w-1/4 md:flex-none">
+                {/* Summary */}
+                <CartSummary/>
+            </div>
+        </div>) : null;
 }
 
 export default CartPage;
