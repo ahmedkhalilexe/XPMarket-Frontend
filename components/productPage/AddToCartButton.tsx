@@ -2,7 +2,7 @@
 import {Button} from "@/components/ui/button";
 import useAddToCartMutation from "@/hooks/useAddToCartMutation";
 import {cn} from "@/lib/utils";
-import {Check, RotateCw, ShoppingCart} from "lucide-react";
+import {Check, RotateCw} from "lucide-react";
 import React from "react";
 
 type Props = {
