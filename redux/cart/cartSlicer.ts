@@ -40,6 +40,12 @@ export const cartSlice = createSlice({
         addSelectedCartItem: (state, action) => {
             state.selectedItems.push(action.payload);
         },
+        selectAllItems: (state) => {
+            state.selectedItems = state.cartItems;
+        },
+        removeAllSelectedItems: (state) => {
+            state.selectedItems = [];
+        },
         removeSelectedItem: (state, action) => {
             state.selectedItems = state.selectedItems.filter((item) => item.userCartProductId !== action.payload.userCartProductId);
         },
@@ -67,4 +73,10 @@ export const cartSlice = createSlice({
         });
     }
 })
-export const {addSelectedCartItem, removeSelectedItem, addCartItems} = cartSlice.actions;
+export const {
+    addSelectedCartItem,
+    removeSelectedItem,
+    addCartItems,
+    selectAllItems,
+    removeAllSelectedItems
+} = cartSlice.actions;

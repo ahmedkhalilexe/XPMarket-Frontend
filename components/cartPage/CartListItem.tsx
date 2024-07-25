@@ -15,6 +15,15 @@ type Props = {
 function CartListItem({item}: Props) {
     const dispatch = useAppDispatch();
     const auth: authType = useSelector((state: RootState) => state.user);
+    const cart: cartItemType | undefined = useSelector((state: RootState) => state.cart.selectedItems.find((cartItem) => cartItem.userCartProductId === item.userCartProductId));
+    const handleCheckChange = (e: boolean) => {
+        if (e.valueOf()) {
+            dispatch(addSelectedCartItem(item));
+        } else {
+            dispatch(removeSelectedItem(item));
+
+        }
+    }
 
     return (<>
         <div className=" w-full h-1 bg-slate-300 rounded-2xl my-4"/>
@@ -22,16 +31,10 @@ function CartListItem({item}: Props) {
 
             <div className={"flex gap-3 items-center"}>
                 {/* CheckBox */}
-                <Checkbox id={"productId"} className=" rounded-full w-5 h-5" onCheckedChange={
-                    (e) => {
-                        if (e.valueOf()) {
-                            dispatch(addSelectedCartItem(item));
-                        } else {
-                            dispatch(removeSelectedItem(item));
-
-                        }
-                    }
-                }/>
+                <Checkbox id={"productId"} className=" rounded-full w-5 h-5" checked={cart !== undefined}
+                          onCheckedChange={
+                              handleCheckChange
+                          }/>
                 <div
                     className="h-20 w-32 md:min-h-32 md:min-w-56 rounded-lg flex justify-center items-center">
                     <Image src={item.product.ProductImages[0].productImageUri} height={130} width={220}
