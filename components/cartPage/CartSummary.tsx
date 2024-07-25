@@ -4,6 +4,8 @@ import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
 import calculateSummary from "@/lib/calculateSummary";
 import useOnCheckOut from "@/hooks/useOnCheckOut";
+import {useAppDispatch} from "@/hooks/reduxHooks";
+import {removeCartItem} from "@/redux/cart/cartSlicer";
 
 
 function CartSummary() {
@@ -11,6 +13,12 @@ function CartSummary() {
     const auth = useSelector((state: RootState) => state.user);
     const {total, itemCount} = calculateSummary(selectedCartItems);
     const onCheckOut = useOnCheckOut(auth.token);
+    const dispatch = useAppDispatch();
+    const deleteSelectedItems = () => {
+        selectedCartItems.forEach((item) => {
+            dispatch(removeCartItem({userCartProductId: item.userCartProductId, token: auth.token}));
+        })
+    }
     const checkOutList: TCreateOrder[] = selectedCartItems.map((item) => {
         return {
             ...item.product,
@@ -28,7 +36,11 @@ function CartSummary() {
             <h1 className="text-lg font-medium">${total}</h1>
         </div>
         <Button variant={"default"} className=" w-full text-2xl py-5 my-4 bg-primaryColor"
-                onClick={() => onCheckOut(checkOutList)}> Checkout</Button>
+                onClick={async () => {
+                    deleteSelectedItems();
+                    await onCheckOut(checkOutList);
+
+                }}> Checkout</Button>
     </div>);
 }
 
