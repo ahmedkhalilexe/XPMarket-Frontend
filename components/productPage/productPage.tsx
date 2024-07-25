@@ -10,6 +10,7 @@ import useOnBuyProduct from "@/hooks/useOnBuyProduct";
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store";
 import {publicAxiosInstance} from "@/lib/axios";
+import AddToCartButton from "@/components/productPage/AddToCartButton";
 
 type props = {
     productId: string
@@ -57,10 +58,8 @@ function ProductPage({productId}: props) {
                                 className="flex-1 py-3 text-xl leading-3 text-gray-100 lg:w-44 lg:flex-none bg-primaryColor hover:bg-blue-900">
                                 Buy now!
                             </CtaButton>
-                            <CtaButton
-                                className="flex-1 py-3 text-xl leading-3 lg:w-44 lg:flex-none bg-lightBackground">
-                                Add to cart
-                            </CtaButton>
+                            <AddToCartButton productId={data.productId} token={auth.token}
+                                             userCartProductQuantity={Number(selectRef.current?.value) || 1}/>
                         </div>
                     </div>
                 </div>
