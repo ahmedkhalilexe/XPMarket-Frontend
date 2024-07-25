@@ -19,7 +19,10 @@ function AddToCartButton({productId, token, userCartProductQuantity}: Props) {
         {
             isSuccess ? <Check className="w-4 h-4 md:w-6 md:h-6"/> : isLoading ?
                 <RotateCw className="animate-spin w-4 h-4 md:w-6 md:h-6"/> :
-                <p className={"w-full h-full"} onClick={() => mutate()}>Add to cart</p>
+                <p className={"w-full h-full"} onClick={() => {
+                    console.log(userCartProductQuantity)
+                    mutate()
+                }}>Add to cart</p>
         }
     </Button>);
 }

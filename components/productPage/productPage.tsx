@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import ImageGalery from "@/components/imageGalery/imageGalery";
 import SelectQuantity from "@/components/productPage/selectQuantity";
 import CtaButton from "@/components/productPage/ctaButton";
@@ -18,7 +18,7 @@ type props = {
 
 function ProductPage({productId}: props) {
     const auth = useSelector((state: RootState) => state.user);
-    const selectRef = useRef<HTMLSelectElement>(null)
+    const [cartQuantity, setCartQuantity] = useState(1);
     const fetchProduct = async (productId: string) => {
         return await publicAxiosInstance.get("/product/getProductById", {
             params: {
@@ -51,15 +51,15 @@ function ProductPage({productId}: props) {
                                     ${data.productOldPrice}
                                 </h1>}
                         </div>
-                        <SelectQuantity ref={selectRef}/>
+                        <SelectQuantity setCartQuantity={setCartQuantity}/>
                         <div className="flex gap-4 mt-6 md:mt-10">
                             <CtaButton
-                                onClick={() => onBuyProduct({...data, quantity: Number(selectRef.current?.value) || 1})}
+                                onClick={() => onBuyProduct({...data, quantity: cartQuantity})}
                                 className="flex-1 py-3 text-xl leading-3 text-gray-100 lg:w-44 lg:flex-none bg-primaryColor hover:bg-blue-900">
                                 Buy now!
                             </CtaButton>
                             <AddToCartButton productId={data.productId} token={auth.token}
-                                             userCartProductQuantity={Number(selectRef.current?.value) || 1}/>
+                                             userCartProductQuantity={cartQuantity}/>
                         </div>
                     </div>
                 </div>
